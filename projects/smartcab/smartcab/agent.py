@@ -201,14 +201,13 @@ class LearningAgent(Agent):
         # print(s_prime, a_prime, self.q_table[(s_prime, a_prime)])
         # TODO: Learn policy based on state, action, reward
         alpha = (100-self.num_trial) / 100.0
-        gamma = 0.3
+        # gamma = 0.3
 
-        self.q_table[(self.state, action)] = (1-alpha)*self.q_table[(self.state, action)] \
-                                             + alpha*(reward + gamma* self.q_table[(s_prime, a_prime)])
+        # alpha = 0.7
+        self.q_table[(self.state, action)] = (1-alpha)*self.q_table[(self.state, action)] + alpha*reward
 
-#        self.update_q_table(state=self.state, action=action, reward=reward,
-#                                s_prime=s_prime, a_prime=a_prime, alpha=alpha, gamma=gamma)
-
+        # self.q_table[(self.state, action)] = (1-alpha)*self.q_table[(self.state, action)] \
+        #                                     + alpha*(reward + gamma* self.q_table[(s_prime, a_prime)])
 
         # print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
 
@@ -223,7 +222,7 @@ def run():
     # NOTE: You can set enforce_deadline=False while debugging to allow longer trials
 
     # Now simulate it
-    sim = Simulator(e, update_delay=1, display=True)  # create simulator (uses pygame when display=True, if available)
+    sim = Simulator(e, update_delay=0, display=False)  # create simulator (uses pygame when display=True, if available)
     # NOTE: To speed up simulation, reduce update_delay and/or set display=False
 
     # sim.run(n_trials=1)
