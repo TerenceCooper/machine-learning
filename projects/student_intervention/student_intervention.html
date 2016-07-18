@@ -11859,7 +11859,7 @@ div#notebook {
 <span class="n">n_students</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">)</span>
 
 <span class="c1"># TODO: Calculate number of features</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="c1"># TODO: Calculate passing students</span>
 <span class="n">n_passed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="p">[</span><span class="s1">&#39;passed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">])</span>
@@ -11889,7 +11889,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
 Graduation rate of the class: 67.09%
@@ -12084,6 +12084,9 @@ Feature values:
 <span class="c1"># TODO: Shuffle and split the dataset into the number of training and testing points above</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.24</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">81</span><span class="p">)</span>
 
+<span class="c1"># Use the stratify=y_all to preserve the percentage of samples for each class between the train and test sets.</span>
+<span class="c1"># X_train, X_test, y_train, y_test = train_test_split(X_all, y_all, stratify=y_all, test_size=0.24, random_state=81)</span>
+
 <span class="c1"># Show the results of the split</span>
 <span class="k">print</span> <span class="s2">&quot;Training set has {} samples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="k">print</span> <span class="s2">&quot;Testing set has {} samples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -12247,7 +12250,7 @@ The reasons that I chose these 3 models:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
@@ -12259,8 +12262,8 @@ The reasons that I chose these 3 models:
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
 
 <span class="c1"># TODO: Initialize the three models</span>
-<span class="n">clf_A</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
-<span class="n">clf_B</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+<span class="n">clf_A</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">81</span><span class="p">)</span>
+<span class="n">clf_B</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">81</span><span class="p">)</span>
 <span class="n">clf_C</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
 
 <span class="c1"># TODO: Set up the training set sizes</span>
@@ -12297,40 +12300,40 @@ The reasons that I chose these 3 models:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training a DecisionTreeClassifier using a training set size of 100. . .
-Trained model in 0.0015 seconds
-Made predictions in 0.0003 seconds.
+Trained model in 0.0014 seconds
+Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.6552.
+F1 score for test set: 0.6435.
 Training a DecisionTreeClassifier using a training set size of 200. . .
-Trained model in 0.0016 seconds
+Trained model in 0.0014 seconds
 Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.6545.
+F1 score for test set: 0.5981.
 Training a DecisionTreeClassifier using a training set size of 300. . .
-Trained model in 0.0023 seconds
-Made predictions in 0.0003 seconds.
+Trained model in 0.0021 seconds
+Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7805.
+F1 score for test set: 0.7333.
 Training a SVC using a training set size of 100. . .
-Trained model in 0.0021 seconds
-Made predictions in 0.0015 seconds.
-F1 score for training set: 0.8414.
+Trained model in 0.0020 seconds
 Made predictions in 0.0014 seconds.
+F1 score for training set: 0.8414.
+Made predictions in 0.0013 seconds.
 F1 score for test set: 0.7746.
 Training a SVC using a training set size of 200. . .
-Trained model in 0.0065 seconds
-Made predictions in 0.0052 seconds.
+Trained model in 0.0060 seconds
+Made predictions in 0.0048 seconds.
 F1 score for training set: 0.8522.
-Made predictions in 0.0027 seconds.
+Made predictions in 0.0023 seconds.
 F1 score for test set: 0.8056.
 Training a SVC using a training set size of 300. . .
-Trained model in 0.0135 seconds
-Made predictions in 0.0105 seconds.
+Trained model in 0.0120 seconds
+Made predictions in 0.0098 seconds.
 F1 score for training set: 0.8589.
-Made predictions in 0.0035 seconds.
+Made predictions in 0.0033 seconds.
 F1 score for test set: 0.8079.
 Training a KNeighborsClassifier using a training set size of 100. . .
 Trained model in 0.0007 seconds
@@ -12340,15 +12343,15 @@ Made predictions in 0.0011 seconds.
 F1 score for test set: 0.7559.
 Training a KNeighborsClassifier using a training set size of 200. . .
 Trained model in 0.0006 seconds
-Made predictions in 0.0030 seconds.
+Made predictions in 0.0029 seconds.
 F1 score for training set: 0.8159.
-Made predictions in 0.0016 seconds.
+Made predictions in 0.0017 seconds.
 F1 score for test set: 0.8088.
 Training a KNeighborsClassifier using a training set size of 300. . .
-Trained model in 0.0009 seconds
-Made predictions in 0.0062 seconds.
+Trained model in 0.0007 seconds
+Made predictions in 0.0060 seconds.
 F1 score for training set: 0.8456.
-Made predictions in 0.0024 seconds.
+Made predictions in 0.0022 seconds.
 F1 score for test set: 0.7971.
 </pre>
 </div>
@@ -12535,6 +12538,14 @@ In summary, I chose SVC as the best.</code></pre>
 <p><strong>Answer: </strong><br>
     We now have a dataset of students and we have all kinds of information in this dataset that we need to describe a student. And all the students either passed the final exam, we label them 'yes', or not, we label them 'no'. Then here comes a new student, who's information is known to us except we don't know whether she passed the exam or not. If I ask you to predict the answer of the question, you may have a pretty clear answer: yes, she has probabily passed. If I pushed you to describe your thoughts, you might say a lot of students in the dataset who under the similar conditions like her have passed the final exam, that's why you gave your answer.</p>
 <p>Effectively, what SVMs do is take your data and draw the line that divide your dataset into groups of positive(will not pass) and negative(have passed) observations. Then you feed it a new data point(here the new student), the algorithm figures out which side of the line the data point is on and spit back the predicted classification.</p>
+<p>Update:</p>
+<p><img src="https://udacity-github-sync-content.s3.amazonaws.com/_imgs/19273/1468014011/optimal-hyperplane.png"></p>
+
+<pre><code>1. The SVM takes data about past students (age, gender, family, etc), and uses them to create a function that draws a boundary between the students who graduated and those who did not. The boundary should be drawn so as to  maximize the margin. The data points that kind of "support" this boundary on either sides are called the "support vectors". In the above picture, the filled blue circle and the two filled squares are the support vectors.  
+</code></pre>
+<p><img src="https://udacity-github-sync-content.s3.amazonaws.com/_imgs/19273/1464624531/1gvce.png"></p>
+
+<pre><code>2. Often, though, it's not easy to draw a linear decision boundary in low dimensions, so the SVM separates the passing and failing students by translating the input space into a higher dimentional space. Then we project the "line" (or "hyperplane") in this higher dimension down to our original dimension, so it looks like a curve. This is what we called a "kernel trick".</code></pre>
 
 </div>
 </div>
@@ -12635,7 +12646,7 @@ Tuned model has a testing F1 score of 0.8148.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong><br>
-    The final model's F1 score for training is 0.922 and for testing is 0.8148. I guess they are a lot more better than the untuned models'.</p>
+    The final model's F1 score for training is 0.922 and for testing is 0.8148. I guess they are much more better than the untuned models'.</p>
 
 </div>
 </div>
