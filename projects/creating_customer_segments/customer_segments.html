@@ -11782,7 +11782,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11835,7 +11835,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display a description of the dataset</span>
@@ -12051,7 +12051,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Select three indices of your choice you wish to sample from the dataset</span>
@@ -12136,13 +12136,12 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># [sum(samples.loc[i]) for i in range(3)]</span>
-<span class="n">m</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># map(np.mean, [samples.loc[i] for i in range(3)])</span>
-<span class="n">std</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># s = samples.apply(np.sum) # [sum(samples.loc[i]) for i in range(3)]</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> <span class="c1"># map(np.mean, [samples.loc[i] for i in range(3)])</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">std</span><span class="p">)</span>
 </pre></div>
@@ -12157,17 +12156,19 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0    29517
-1    47561
-2    21905
-dtype: int64
-0    4919.500000
-1    7926.833333
-2    3650.833333
+<pre>Fresh               19951.333333
+Milk                 2807.666667
+Grocery              4717.333333
+Frozen               2436.333333
+Detergents_Paper     1330.333333
+Delicatessen         1751.333333
 dtype: float64
-0     2770.160329
-1    12648.129472
-2     5651.253089
+Fresh               11918.155068
+Milk                 1520.937065
+Grocery              3365.140941
+Frozen               1695.226501
+Detergents_Paper     1414.046282
+Delicatessen          618.864731
 dtype: float64
 </pre>
 </div>
@@ -12198,7 +12199,14 @@ dtype: float64
 
 <pre><code>1. The first customer may be a convinient store or supermarket. The customer's costs mean is 4919.5 and std is 2770.16, the variance here is relatively small. This means the customer's buying is more decentralized than the other two.  
 2. The second customer has the biggest purchase cost: 47561, which leads to the highest mean: 7926.83, and it has the biggest variance of the three: 12648.13. Of all the 6 categories, the 'Fresh' part accounts for 75.80% of the total purchase cost. This means the costumer's cost is very much focused on the 'Fresh' category, so it may be a professional vegetable, fruit, and frozen seafood market.  
-3. It is pretty similar when comparing this customer's cost structure with the second one's. So it may be a fresh vegetable, fruit market but in smaller volume or maybe just a very big restaurant.</code></pre>
+3. It is pretty similar when comparing this customer's cost structure with the second one's. So it may be a fresh vegetable, fruit market but in smaller volume or maybe just a very big restaurant.  
+
+</code></pre>
+<p>Update:(1st)</p>
+
+<pre><code>1. The first customer's 'Milk', 'Grocery' and 'Frozen' are all less than the respective means, except 'Detergents_Paper' and 'Delicatessen' are well byond the means. And this customer's buying is more uniformly distributed than the other two's. So it may be a convinient store or supermarket, must be a retailer.
+2. The second customer's 'Fresh' part is very much greater than the mean, actually it's even bigger than 24644.63(μ＋σ), while 'Milk', 'Grocery', 'Detergents_Paper' and 'Delicatessen' are all under the respective means. This shows the customer's buying is more concentrate on the 'Fresh' and 'Frozen' parts. So it may be a professional vegetable, fruit, and frozen seafood market.  
+3. It is pretty similar when comparing this customer's cost structure with the second one's. So it may be a fresh vegetable, fruit market but in smaller volume or maybe just a very big restaurant. </code></pre>
 
 </div>
 </div>
@@ -19056,6 +19064,11 @@ RU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong><br>
 There is 0.4424+0.2766=0.719 variance explained by the first and second principal component. It is 0.93 variance explained by the first four principal components.</p>
+<p>Update:(1st)<br>
+    The explained variance for the 1st dimetion is 0.4993. It comprises large positive weight in <code>"Detergents_Paper"</code>, and lesser but still sizeable positive weights on <code>"Grocery"</code> and <code>"Milk"</code>. It also correlates with a nominal negative weights in <code>"Fresh"</code> and <code>"Frozen"</code>. This pattern might represent spending in household staples products that are purchased together.<br>
+    The second dimension is made of large positive weight on <code>"Fresh"</code>, sizable positive weights on <code>"Frozen"</code> and <code>"Delicatessen"</code>. This could represent the other end of the spectrum of correlated features when compared to the first dimention, representing spending on food and related goods.<br>
+    The third principal component made up of large and nominal negative weights on <code>"Fresh"</code> and <code>"Detergent_papers"</code> respectively and also correlates with a significantly large positive weight of <code>"Delicatessen"</code> and a nominal positive weight from the <code>"Frozen"</code> goods. This perhaps, is representative of a spending pattern that includes large quantities of fresh goods like vegetables and fruits but not on <code>"frozen"</code> goods like meat and sea foods or vice-versa. The point here is that these two are mutually exclusive.<br>
+    The explained variance of fourth dimention is 0.0978, we can see a large positive weight in <code>"Frozen"</code> and lesser yet sizeable weight in <code>"Detergent_papers"</code>. At the same time, it correlates with a big negative weight in <code>"Delicatessen"</code> , sizeable negative weight in <code>"Fresh"</code> and nominal negative weight in <code>"Grocery"</code> and <code>"Frozen"</code>.</p>
 
 </div>
 </div>
@@ -20322,6 +20335,11 @@ Sample point 2 predicted to be in Cluster 1
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
+<p>Update:(1st)<br>
+    The delivery change doesn't affect all customers equally, and we use A/B test to decide which group of customers it affects the most.
+    Let's say every customer is either with segment 0 or 1, we then randomly sampling 20 customers from each segment.
+    For the 20 customers with segment 0, we change their delivery services to 3 days a week. We then closely follow up the their responses, get the total number of customers who complain about the new delivery schedule. Finally, we get a proportion of negative affected customer, and we can use it to infer the whole effect on all the customers with the same segment.<br>
+    We try the same test with customers in segment 1.</p>
 
 </div>
 </div>
@@ -20345,6 +20363,8 @@ Sample point 2 predicted to be in Cluster 1
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong><br>
     We can use all the six product features, besides 'Region' and 'Channel, as the input features, and customer_segments as the target variable. Then train a supervised learning model on current dataset, and use this learned model to predict the 10 new customers' segments.</p>
+<p>Update:(1st)<br>
+    After the unsupervised learning, we now get 6 original features and 1 new 'engineered feature', we can then use these 7 features to predict a new label, like the delivery schedule of the 10 new customers. We train the model against current data, then feed the new customers' data into it, and it will tell the appropriate delivery schedule.</p>
 
 </div>
 </div>
